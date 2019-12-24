@@ -3,7 +3,7 @@
     <navbar />
     <div class="main">
       <sidebar />
-      <mains />
+      <router-view></router-view>
     </div>
     <foot />
   </div>
@@ -11,10 +11,9 @@
 <script>
 import sidebar from "../sidebar/sidebar";
 import navbar from "../navbar/navbar";
-import mains from "../index/index";
 import foot from "../footer/footer";
 export default {
-  components: { sidebar, mains, navbar, foot },
+  components: { sidebar, navbar, foot },
   data() {
     return {};
   }
@@ -29,5 +28,6 @@ export default {
 .main {
   display: flex;
   flex-grow: 1;
+  box-sizing: border-box;
 }
 </style>
