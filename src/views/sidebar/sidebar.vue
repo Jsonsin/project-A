@@ -1,36 +1,54 @@
 <template>
   <div class="sidebar">
     <ul>
-      <li>
-        <div>1</div>
-        <div class="right">1.1</div>
-      </li>
-      <li>2</li>
-      <li>3</li>
-      <li>4</li>
-      <li>5</li>
+      <router-link
+        v-for="(item, index) in menus[0].children"
+        :key="index"
+        :to="{ name: item.name }"
+        tag="li"
+      >
+        <div :class="['iconfont', item.meta.icon]"></div>
+        <div>{{ item.meta.title }}</div>
+      </router-link>
     </ul>
   </div>
 </template>
 <script>
-export default {};
+import { menuRoutes } from "../../router/index";
+export default {
+  data() {
+    return {
+      menus: [
+        {
+          type: "root",
+          children: menuRoutes
+        }
+      ]
+    };
+  },
+  mounted() {}
+};
 </script>
 <style lang="less" scoped>
 .sidebar {
-  width: 20%;
+  width: 13%;
+  background-color: #f6f6f6;
 }
 ul,
 li {
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 li {
   display: flex;
-  height: 100px;
+  height: 75px;
+  font-size: 14px; /* no*/
   align-items: center;
-}
-.right {
-  margin-left: auto;
-  margin-right: 20px;
+  cursor: pointer;
+  div:nth-child(1) {
+    margin-left: 20px;
+    margin-right: 10px;
+  }
 }
 </style>
