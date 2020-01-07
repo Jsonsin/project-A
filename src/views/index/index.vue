@@ -29,7 +29,7 @@ export default {
         limit: 10
       });
       this.songList = res.result;
-      console.log("[推荐歌单]" + this.songList);
+      console.log(this.songList);
     },
     async getnewSong() {
       try {
