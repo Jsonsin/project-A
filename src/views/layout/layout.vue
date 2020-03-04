@@ -3,7 +3,9 @@
     <navbar />
     <div class="main">
       <sidebar />
-      <router-view></router-view>
+      <keep-alive :cludes="['mvs']">
+        <router-view></router-view>
+      </keep-alive>
     </div>
     <foot />
   </div>

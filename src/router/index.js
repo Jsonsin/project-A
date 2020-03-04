@@ -2,9 +2,9 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import layout from "../views/layout/layout.vue";
 import index from "../views/index/index.vue";
-import playlists from "../views/playlists/playlists.vue";
 import songs from "../views/songs/songs.vue";
 import mvs from "../views/mvs/mvs.vue";
+import mvsChild from "../views/mvs/mvs-child.vue";
 Vue.use(VueRouter);
 
 // 需要显示在侧边栏菜单的页面
@@ -21,7 +21,9 @@ export const menuRoutes = [
   {
     path: "/playlists",
     name: "playlists",
-    component: playlists,
+    component: () => {
+      import("../views/playlists/playlists.vue");
+    },
     meta: {
       title: "推荐歌单",
       icon: "icon-music"
@@ -61,7 +63,7 @@ const routes = [
       {
         path: "/playlists",
         name: "playlists",
-        component: playlists
+        component: () => import("../views/playlists/playlists.vue") // 懒加载
       },
       {
         path: "/songs",
@@ -71,14 +73,25 @@ const routes = [
       {
         path: "/mvs",
         name: "mvs",
-        component: mvs
+        component: mvs,
+        meta: {
+          keepalive: false
+        },
+        children: [
+          {
+            path: "/mvs/mvsChild",
+            name: "mvsChild",
+            component: mvsChild
+          }
+        ]
       }
     ]
   }
 ];
 
 const router = new VueRouter({
-  routes
+  routes,
+  scrollBehavior: () => ({ y: 0 })
 });
 
 export default router;

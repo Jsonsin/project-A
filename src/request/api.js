@@ -5,3 +5,6 @@ export const getnewsong = function(p) {
 export const getsonglist = function(p) {
   return get("/personalized", p);
 };
+export const getBanner = function(p) {
+  return get("/banner", p);
+};
